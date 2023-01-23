@@ -1,5 +1,5 @@
 # ABP.TPLMS
-ABP+easyui+efcore 仓储管理系统
+ABP+easyui+efcore 仓储管理系统。
    具体介绍请看  https://www.cnblogs.com/chillsrc/p/11231284.html
    
 # 解决方案介绍
