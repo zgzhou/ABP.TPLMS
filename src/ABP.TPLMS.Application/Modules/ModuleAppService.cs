@@ -19,11 +19,12 @@ namespace ABP.TPLMS.Modules
     public class ModuleAppService : ApplicationService, IModuleAppService
     {
         private readonly IRepository<Module> _moduleRepository;
-        //AutoMapper.IMapper m_map;
+       // AutoMapper.IMapper m_map;
 
         public ModuleAppService(IRepository<Module> moduleRepository)
         {
             _moduleRepository = moduleRepository;
+        
             //m_map =map;
         }
         public Task CreateAsync(CreateUpdateModuleDto input)
