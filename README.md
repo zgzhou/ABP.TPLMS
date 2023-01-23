@@ -1,7 +1,9 @@
 # ABP.TPLMS
 ABP+easyui+efcore 仓储管理系统。
-   具体介绍请看  https://www.cnblogs.com/chillsrc/p/11231284.html
+具体介绍请看  https://www.cnblogs.com/chillsrc/p/11231284.html。
    
+ 此项目代码是升级版本，ABP(7.3)+easyui(1.10.12)+efcore(7.0)。
+ 
 # 解决方案介绍
      ABP.TPLMS.Application,应用层:进行展现层与领域层之间的协调，协调业务对象来执行特定的应用程序的任务。
      它不包含业务逻辑,主要包含一些模型,abp重要的数据传输DTO,包括数据库映射实体,前端视图模型转实体(Entity)对象,
