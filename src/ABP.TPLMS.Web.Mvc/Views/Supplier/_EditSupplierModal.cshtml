@@ -1,0 +1,114 @@
+﻿@using ABP.TPLMS.Web.Models.Common.Modals
+@model ABP.TPLMS.Web.Models.Supplier.EditSupplierModalViewModel
+@{
+    Layout = null;
+}
+
+@Html.Partial("~/Views/Shared/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(L("EditSupplier")))
+
+<div class="modal-body">
+    <form name="SupplierEditForm" role="form" novalidate class="form-validation">
+        <input type="hidden" name="Id" value="@Model.Supplier.Id" />
+
+        <div>
+
+            <div class="row clearfix">
+                <div class="col-sm-6">
+                    <div class="form-group form-float">
+                        <div class="form-line">
+                            <label asp-for="@Model.Supplier.Code" class="form-label"></label>
+                            <input type="text" name="Code" value="@Model.Supplier.Code"  class="form-control" required maxlength="50" />
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group form-float">
+                        <div class="form-line">
+                            <label asp-for="@Model.Supplier.Name" class="form-label"></label>
+                            <input type="text" name="Name" value="@Model.Supplier.Name" class="form-control" required maxlength="50" />
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row clearfix">
+                <div class="col-sm-12">
+                    <div class="form-group form-float">
+                        <div class="form-line">
+                            <label asp-for="@Model.Supplier.Address" class="form-label"></label>
+                            <input type="text" name="Address" value="@Model.Supplier.Address" class="form-control" required maxlength="255" />
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row clearfix">
+                <div class="col-sm-6">
+                    <div class="form-group form-float">
+                        <div class="form-line">
+                            <label asp-for="@Model.Supplier.LinkName" class="form-label"></label>
+                            <input type="text" name="LinkName" value="@Model.Supplier.LinkName"  class="form-control" />
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group form-float">
+                        <div class="form-line">
+                            <label asp-for="@Model.Supplier.Mobile" class="form-label"></label>
+                            <input type="text" name="Mobile"  value="@Model.Supplier.Mobile" class="form-control" />
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row clearfix">
+                <div class="col-sm-6">
+                    <div class="form-group form-float">
+                        <div class="form-line">
+                            <label asp-for="@Model.Supplier.Tel" class="form-label"></label>
+                            <input type="text" name="Tel" value="@Model.Supplier.Tel" class="form-control" required maxlength="255" />
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group form-float">
+                        <div class="form-line">
+                            <label asp-for="@Model.Supplier.Status" class="form-label"></label>
+                            <input type="text" name="Status" value="@Model.Supplier.Status" class="form-control" />
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row clearfix">
+                <div class="col-sm-6">
+                    <div class="form-line">
+                        <label asp-for="@Model.Supplier.Sex"></label>
+                        <input value="@Model.Supplier.Sex" name="Sex" type="text" class="form-control" />
+
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-line">
+                        <label asp-for="@Model.Supplier.Email"></label>
+                        <input name="Email"   value="@Model.Supplier.Email" type="text" class="form-control" />
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        @*<div class="modal-footer">
+            <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">@L("Cancel")</button>
+            <button type="submit" class="btn btn-primary waves-effect">@L("Save")</button>
+        </div>*@
+
+    </form>
+</div>
+@Html.Partial("~/Views/Shared/Modals/_ModalFooterWithSaveAndCancel.cshtml")
+
+<script src="~/view-resources/Views/Supplier/_EditSupplierModal.js" asp-append-version="true"></script>

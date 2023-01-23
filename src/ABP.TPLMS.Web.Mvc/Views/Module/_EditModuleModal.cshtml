@@ -1,0 +1,104 @@
+﻿@using ABP.TPLMS.Web.Models.Common.Modals
+@model ABP.TPLMS.Web.Models.Module.EditModuleModalViewModel
+@{
+    Layout = null;
+}
+@Html.Partial("~/Views/Shared/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(L("EditModule")))
+<div class="modal-body">
+    <form name="ModuleEditForm" role="form" novalidate class="form-validation">
+        <input type="hidden" name="Id" value="@Model.Module.Id" />
+
+        <div>
+
+            <div class="row clearfix">
+                <div class="col-sm-6">
+                    <div class="form-group form-float">
+                        <div class="form-line">
+                            <label asp-for="@Model.Module.Name" class="form-label"></label>
+                            <input type="text" name="Name" value="@Model.Module.Name" class="form-control" required maxlength="50" />
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group form-float">
+                        <div class="form-line">
+                            <label asp-for="@Model.Module.DisplayName" class="form-label"></label>
+                            <input type="text" name="DisplayName" value="@Model.Module.DisplayName" class="form-control" required maxlength="50" />
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row clearfix">
+                <div class="col-sm-12">
+                    <div class="form-group form-float">
+                        <div class="form-line">
+                            <label asp-for="@Model.Module.Url" class="form-label"></label>
+                            <input type="text" name="Url" value="@Model.Module.Url" class="form-control" required maxlength="255" />
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row clearfix">
+                <div class="col-sm-6">
+                    <div class="form-group form-float">
+                        <div class="form-line">
+                            <label asp-for="@Model.Module.HotKey" class="form-label"></label>
+                            <input type="text" name="HotKey" value="@Model.Module.HotKey"  class="form-control" />
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group form-float">
+                        <div class="form-line">
+                            <label asp-for="@Model.Module.RequiredPermissionName" class="form-label"></label>
+                            <input type="text" name="RequiredPermissionName" value="@Model.Module.RequiredPermissionName"  class="form-control" />
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row clearfix">
+                <div class="col-sm-6">
+                    <div class="form-group form-float">
+                        <div class="form-line">
+                            <label asp-for="@Model.Module.ParentName" class="form-label"></label>
+                            <input type="text" name="ParentName"  class="form-control" value="@Model.Module.ParentName" required maxlength="255" />
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group form-float">
+                        <div class="form-line">
+                            <label asp-for="@Model.Module.IconName" class="form-label"></label>
+                            <input type="text" value="@Model.Module.IconName" name="IconName" class="form-control" />
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row clearfix">
+                <div class="col-sm-12">
+                    <div class="checkbox">
+
+                        <input name="RequiresAuthentication" type="checkbox" value="@Model.Module.RequiresAuthentication"  class="filled-in" checked />
+                        <label asp-for="@Model.Module.RequiresAuthentication"></label>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">@L("Cancel")</button>
+            <button type="submit" class="btn btn-primary waves-effect">@L("Save")</button>
+        </div>
+
+    </form>
+</div>
+@Html.Partial("~/Views/Shared/Modals/_ModalFooterWithSaveAndCancel.cshtml")
+<script src="~/view-resources/Views/Module/_EditUserModal.js" asp-append-version="true"></script>

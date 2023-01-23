@@ -1,0 +1,241 @@
+﻿@using ABP.TPLMS.Web.Startup
+@{
+    ViewData["Title"] = PageNames.InStock;
+}
+
+@section scripts{
+  <script src="~/view-resources/Views/InStock/Index.js" asp-append-version="true"></script>
+  <script src="~/lib/easyui-1.8/datagrid-detailview.js" asp-append-version="true"></script>
+  
+    <script type="text/javascript">
+          $(function () {
+            initable();
+            init();
+             reloaded();
+            updInSOInfo();
+            showInSODialog();
+            deleteInSO();
+
+              $('#box').tabs({
+                width: 780,      //选项卡容器宽度
+                height: 465,      //选项卡容器高度
+                onSelect: function (title, index) {
+                    var rcv = $("#RcvUpdate").val();
+
+                    if (title == "入库单明细") {
+
+                        $("#rcv").val(rcv);
+                    }
+                }
+
+            });
+
+        });
+    </script>
+
+    }
+
+
+    <div data-options="region:'center'" style="overflow: hidden;">
+
+        <div id="containter" style="width: 1000px; height: auto; margin: 0px auto;">
+            <!--toolbar-->
+            <div style="margin-bottom:1px;font-weight:bold;">
+                <a href="#" id="add" class="easyui-linkbutton" data-options="iconCls:'icon-add'" style="width:100px; height:30px; background-color:#0993D3;">生成入库单</a>
+                <a href="#" id="del" class="easyui-linkbutton" data-options="iconCls:'icon-remove'" style="width:100px; height:30px; background-color:#0993D3;">删除</a>
+                <a href="#" id="edit" class="easyui-linkbutton" data-options="iconCls:'icon-edit'" style="width:100px; height:30px; background-color:#0993D3;">修改</a>
+                <a href="#" id="submits" class="easyui-linkbutton" data-options="iconCls:'icon-ok'" style="width:100px; height:30px; background-color:#0993D3;">提交</a>
+                <a href="#" id="reload" class="easyui-linkbutton" data-options="iconCls:'icon-reload'" style="width:100px; height:30px; background-color:#0993D3;">刷新</a>
+            </div>
+            <!--panel-->
+            <div data-options="region:'center',split:false" style="height:500px;">
+                <!--表格-->
+                <table id="dgINSO"></table>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!---------------------------导入货物信息弹出窗体------------------------------------------->
+    <div id="divImportCargo" class="easyui-dialog" closed="true" style="top:10px;" data-options="buttons: '#dlg-buttons-po'">
+       
+           
+           
+
+                <!--panel-->
+                <div data-options="region:'center',split:false" style="height:460px;">
+                    <!--表格-->
+                    <table id="dgCargo"></table>
+                </div>
+            
+          
+
+    </div>
+
+    <div id="dlg-buttons-po">
+        <input type="submit" id="btnImportDO" value="导入" class="btn btn-primary" />
+        
+        <input type="submit" id="btnCancleDO" value="取消" class="btn btn-info" />
+    </div>
+
+
+    <!---------------------------新增修改入库单信息------------------------------------------->
+    <div id="divAddUpdINO" class="easyui-dialog" closed="true" style="top:10px;" data-options="buttons: '#dlg-buttons'">
+        <div id="box">
+            <div title="入库单">
+                <table>
+                    <tr>
+                        <td><input type="hidden" name="ID" id="IDUpdate" /></td>
+                    </tr>
+                    <tr>
+                        <td>入库单号：</td>
+                        <td><input type="text" id="UpdNO" name="UNO" class="form-control input-sm" /></td>
+                        <td>预计送货日期：</td>
+                        <td>
+                            <input type="text" id="PreDeliveryTimeUpdate" name="UPreDeliveryTime" class="form-control input-sm" />
+
+                        </td>
+                        <td> 状态：</td>
+                        <td><input type="text" id="StatusUpdate" name="UStatus" class="form-control input-sm" value="0" /></td>
+
+                    </tr>
+                    <tr>
+                        <td> 发货人：</td>
+                        <td><input type="text" id="OwnerCodeUpdate" name="UOwnerCode" class="form-control input-sm" /></td>
+
+                        <td colspan="2">
+                            <input type="text" id="OwnerNameUpdate" name="UOwnerName" class="form-control input-sm" />
+
+                        </td>
+                        <td>社会信用代码：</td>
+                        <td>
+                            <input type="text" id="ConsignerSccdUpdate" name="UConsignerSccd" class="form-control input-sm" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td> 收货人：</td>
+                        <td><input type="text" id="CustomerCodeUpdate" name="UCustomerCode" class="form-control input-sm" /></td>
+
+                        <td colspan="2">
+                            <input type="text" id="CustomerNameUpdate" name="UCustomerName" class="form-control input-sm" />
+
+                        </td>
+                        <td>社会信用代码：</td>
+                        <td>
+                            <input type="text" id="ConsigneeSccdUpdate" name="UConsigneeSccd" class="form-control input-sm" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td> 经营企业：</td>
+                        <td><input type="text" id="BizpoEtpsNoUpdate" name="UBizpoEtpsNo" class="form-control input-sm" /></td>
+
+                        <td colspan="2">
+                            <input type="text" id="BizpoEtpsNameUpdate" name="UBizpoEtpsName" class="form-control input-sm" />
+
+                        </td>
+                        <td>社会信用代码：</td>
+                        <td>
+                            <input type="text" id="BizpoEtpsSccdUpdate" name="UBizpoEtpsSccd" class="form-control input-sm" />
+                        </td>
+                    </tr>
+                
+
+                    <tr>
+                        <td>理货员：</td>
+                        <td> <input type="text" id="ReceiverUpdate" name="UReceiver" class="form-control input-sm" /></td>
+                        <td>收货开始时间：</td>
+                        <td>
+                            <input type="text" id="ReceiveTimeUpdate" name="UReceiveTime" class="form-control input-sm" />
+
+                        </td>
+                        <td>收货结束时间：</td>
+                        <td>
+                            <input type="text" id="ERcvTimeUpdate" name="UERcvTime" class="form-control input-sm" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>净重：</td>
+                        <td> <input type="text" id="NwtUpdate" name="UNwt" class="form-control input-sm" value="0" /></td>
+                        <td>毛重：</td>
+                        <td>
+                            <input type="text" id="GwtUpdate" name="UGwt" class="form-control input-sm" value="0" />
+
+                        </td>
+                         <td>件数：</td>
+                        <td>
+
+                            <input type="text" id="PackageQtyUpdate" name="UPackageQty" class="form-control input-sm" value="0" />
+                        </td>
+                      
+                    </tr>
+                    <tr>
+                        <td>仓库号：</td>
+                        <td>
+
+                            <input type="text" id="WarehouseNoUpdate" name="UWarehouseNo" class="form-control input-sm" />
+                        </td>
+
+                         <td>仓库类型：</td>
+                        <td>
+                            <input type="text" id="WarehouseTypeUpdate" name="UWarehouseType" class="form-control input-sm" />
+                        </td>
+                        <td>核查时间：</td>
+                        <td>
+                            <input type="text" id="CheckTimeUpdate" name="UCheckTime" class="form-control input-sm" />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td> 核查员：</td>
+                        <td>
+
+                            <input type="text" id="CheckerUpdate" name="UChecker" class="form-control input-sm" />
+                        </td>
+
+                        <td>操作员：</td>
+                        <td>
+
+                            <input type="text" id="OperUpdate" name="UOper" class="form-control input-sm" />
+                        </td>
+                        <td>创建时间：</td>
+                        <td>
+                            <input type="text" id="CreationTimeUpdate" name="UCreationTime" class="form-control input-sm" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td> 备注：</td>
+                        <td colspan="5"><input type="text" id="RemarkUpdate" name="URemark" class="form-control input-sm" /></td>
+
+                    </tr>
+                </table>
+            </div>
+            <div title="入库单明细">
+
+                <!--panel-->
+                <div data-options="region:'center',split:false" style="height:400px;">
+                    <!--表格-->
+                    <table id="dgINOD"></table>
+                </div>
+            </div>
+        
+        </div>
+
+
+    </div>
+
+    <div id="dlg-buttons">
+        <input type="submit" id="btnSave" value="保存" class="btn btn-primary" />
+        <input type="submit" id="btnSubmit" value="提交" class="btn btn-primary" />
+        <input type="submit" id="btnCancle" value="取消" class="btn btn-info" />
+    </div>
+
+ <!--
+   <div id="dg-detail-button">
+             <a href="#" id="add" class="easyui-linkbutton" data-options="iconCls:'icon-add'" style="width:100px; background-color:#0993D3;" onclick="ShowCargoInfo()">添加明细</a>
+           <a href="#" id="addLoc" class="easyui-linkbutton" data-options="iconCls:'icon-add'" style="width:100px; background-color:#0993D3;" onclick="SubGridAddRow()">添加库位</a>
+         
+      <a href="#" id="del" class="easyui-linkbutton" data-options="iconCls:'icon-remove'" style="width:100px; background-color:#0993D3;">删除</a>
+         
+        </div>
+        -->
