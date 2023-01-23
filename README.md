@@ -1,5 +1,6 @@
 # ABP.TPLMS
 ABP+easyui+efcore 仓储管理系统
+具体介绍请看  https://www.cnblogs.com/chillsrc/p/11231284.html
      ABP.TPLMS.Application,应用层:进行展现层与领域层之间的协调，协调业务对象来执行特定的应用程序的任务。它不包含业务逻辑,主要包含一些模型,abp重要的数据传输DTO,包括数据库映射实体,前端视图模型转实体(Entity)对象,一个应用服务方法通常被认为是一个工作单元（Unit of Work）,使用一种像AutoMapper这样的工具来进行实体与DTO之间的映射,前端参数传入有限性验证等等
 
        ABP.TPLMS.Core:领域层:领域层就是业务层，是一个项目的核心，所有业务规则都应该在领域层实现。包括业务对象和业务规则，这是应用程序的核心层。 
