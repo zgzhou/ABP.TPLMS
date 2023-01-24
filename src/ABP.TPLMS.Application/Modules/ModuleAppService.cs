@@ -19,17 +19,17 @@ namespace ABP.TPLMS.Modules
     public class ModuleAppService : ApplicationService, IModuleAppService
     {
         private readonly IRepository<Module> _moduleRepository;
-       // AutoMapper.IMapper m_map;
+      // AutoMapper.IMapper m_map;
 
         public ModuleAppService(IRepository<Module> moduleRepository)
         {
             _moduleRepository = moduleRepository;
         
-            //m_map =map;
+           // m_map =map;
         }
         public Task CreateAsync(CreateUpdateModuleDto input)
         {
-            var module=Abp.ObjectMapping.NullObjectMapper.Instance.Map<Module>(input);
+            var module= ObjectMapper.Map<Module>(input);
             //var module = m_map.Map<Module>(input);
 
             return _moduleRepository.InsertAsync(module);
@@ -37,7 +37,7 @@ namespace ABP.TPLMS.Modules
         public Task UpdateAsync(CreateUpdateModuleDto input)
         {
             Logger.Info("更新操作-日记记录 - 模块类型的名称 为：" + input.DisplayName);
-            var module = Abp.ObjectMapping.NullObjectMapper.Instance.Map<Module>(input);
+            var module = ObjectMapper.Map<Module>(input);
            // var module = m_map.Map<Module>(input);
 
             return _moduleRepository.UpdateAsync(module);

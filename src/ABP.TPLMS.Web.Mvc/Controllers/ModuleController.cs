@@ -11,7 +11,8 @@ using ABP.TPLMS.Modules.Dto;
 using ABP.TPLMS.Web.Models.Module;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-
+using AutoMapper;
+using StackExchange.Redis;
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace ABP.TPLMS.Web.Controllers
@@ -61,20 +62,26 @@ namespace ABP.TPLMS.Web.Controllers
         {
             Logger.Info("列表操作-日记记录 - 显示模块列表");
             var output = _moduleAppService.GetAllAsync();
+            //var mod=output.Result.Items.FirstOrDefault();
+            //var config = new MapperConfiguration(cfg => cfg.CreateMap<ModuleDto, CreateUpdateModuleDto>());
+            //var mapper = new Mapper(config);
+            //var m = mapper.Map<CreateUpdateModuleDto>(mod);
             var model = new EditModuleModalViewModel
             {
                 Module = m_map.Map<CreateUpdateModuleDto>(output.Result.Items.First()),
                 Modules = output.Result.Items
             };
+            
             return View(model);
         }
-      
-            private readonly IModuleAppService _moduleAppService;
-        AutoMapper.Mapper m_map;
-            public ModuleController(IModuleAppService moduleAppService,AutoMapper.Mapper map)
+        private readonly IMapper m_map;
+        private readonly IModuleAppService _moduleAppService;
+        //AutoMapper.Mapper m_map;
+       
+            public ModuleController(IModuleAppService moduleAppService,IMapper map)
             {
             _moduleAppService = moduleAppService;  
-            m_map = map;
+            m_map= map;
             }
 
         [HttpPost]
@@ -153,7 +160,7 @@ namespace ABP.TPLMS.Web.Controllers
             }
             var model = new EditModuleModalViewModel
             {
-                Module = m_map.Map<CreateUpdateModuleDto>(module)                
+                Module =m_map.Map<CreateUpdateModuleDto>(module)                
             };
             return View(model);
             //return Ok(cargo.Result);
