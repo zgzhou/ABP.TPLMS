@@ -29,8 +29,8 @@ namespace ABP.TPLMS.Modules
         }
         public Task CreateAsync(CreateUpdateModuleDto input)
         {
-            var module= ObjectMapper.Map<Module>(input);
-            //var module = m_map.Map<Module>(input);
+           var module= ObjectMapper.Map<Module>(input);
+           // var module = Mapper.Map<Module>(input);
 
             return _moduleRepository.InsertAsync(module);
         }
@@ -51,7 +51,7 @@ namespace ABP.TPLMS.Modules
         [UnitOfWork(isTransactional:false)]
         public List<Module> GetAll()
         {
-            var books = _moduleRepository.GetAllListAsync();
+            var modules = _moduleRepository.GetAllListAsync();
             //   AutoMapper.Mapper.Initialize(map => map.CreateMap<Module, ModuleDto>());
             // List<ModuleDto> slist = AutoMapper.Mapper.Map<List<Module>, List<ModuleDto>>(books);
             //var slist = new ListResultDto<ModuleDto>(ObjectMapper.Map<List<ModuleDto>>(books));
@@ -67,7 +67,7 @@ namespace ABP.TPLMS.Modules
             //    result.Add(enumerator.Current);
             //}
 
-                return books.Result;
+                return modules.Result;
 
         }
         public async Task DeleteAsync(int Id)

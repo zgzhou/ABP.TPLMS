@@ -26,9 +26,9 @@ namespace ABP.TPLMS.Orgs
         public  PagedOrgResultDto<OrgDto> GetAllOrgs(PagedOrgResultRequestDto input)
         {
             PagedOrgResultDto<OrgDto> orgs = new PagedOrgResultDto<OrgDto>();
-           // input.SkipCount = 1000;//这里需要进行参数传递
+            input.SkipCount = 0;//这里需要进行参数传递
             input.MaxResultCount= 1000;           
-            var allOrgs=GetAllAsync(input);
+            var allOrgs=GetAllAsync(input);            
             IReadOnlyList<OrgDto> result = AddParentOrgs(input, allOrgs.Result.Items).AsReadOnly();
             orgs.Rows = result;
             orgs.Total = result.Count;
@@ -36,12 +36,20 @@ namespace ABP.TPLMS.Orgs
         }
         private List<OrgDto> AddParentOrgs(PagedOrgResultRequestDto input,IReadOnlyList<OrgDto> list)
         {
+            List<OrgDto> result = new List<OrgDto>();
+            if (list == null || list.Count==0)
+                return result;
             var qry1 = base.CreateFilteredQuery(input);
             List<Org> listParent = new List<Org>();
             GetParentOrgs(listParent, list[0].ParentId, qry1);
-            List<OrgDto> result = new List<OrgDto>();
+           
             foreach (var item in listParent)
             {
+                var o = result.Find(x => x.Id == item.Id);
+                if (o==null || o.Id>0)
+                {
+                    continue;
+                }
                 result.Add(ObjectMapper.Map<OrgDto>(item));
             }
             result.AddRange(list.ToArray());

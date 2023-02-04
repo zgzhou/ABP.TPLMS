@@ -97,7 +97,16 @@
     <text name="DeleteTenantConfirm">确认删除该租户？</text>
     <text name="EditTenant">编辑租户</text>
     <text name="SearchWithThreeDot">搜索...</text>
-    
+	  <text name="Module">模块管理</text>
+
+	  <text name="EditModule">编辑模块</text>
+	  <text name="CreateNewModule">创建模块</text>
+
+	  <text name="Supplier">供应商管理</text>
+
+	  <text name="EditSupplier" >编辑供应商</text>
+	  <text name="CreateNewSupplier">创建供应商</text>
+	  <text name="Business" >业务管理</text>
   </texts>
 </localizationDictionary>
 

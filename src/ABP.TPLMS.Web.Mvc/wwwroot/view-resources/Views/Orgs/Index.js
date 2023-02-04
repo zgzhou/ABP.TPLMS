@@ -101,9 +101,9 @@ function deleteOrg() {
                 if (res) {
                     var codes = []; //重要不是{}
                     for (var i = 0; i < rows.length; i++) {
-                        codes.push(rows[i].Id);
+                        codes.push(rows[i].id);
                         _orgService.delete({
-                            id: rows[i].Id
+                            id: rows[i].id
                         }).done(function () {
                             $.messager.alert("提示", "删除成功！");
                             $("#dgOrg").datagrid("clearChecked");
@@ -280,23 +280,23 @@ function GetOrg() {
 
 function showOrg(row) {
     
-    $("#IDUpdate").val(row.Id);
-    $("#NameUpdate").val(row.Name);
-    $("#UpdBizCode").val(row.BizCode);
+    $("#IDUpdate").val(row.id);
+    $("#NameUpdate").val(row.name);
+    $("#UpdBizCode").val(row.bizCode);
     
     $("#UpdType").val(row.Type);
-    $("#UpdCustomCode").val(row.CustomCode);
-    $("#UpdIsAutoExpand").val(row.IsAutoExpand);
-    $("#UpdIsLeaf").val(row.IsLeaf);
-    $("#UpdStatus").val(row.Status);
-    $("#UpdHotKey").val(row.HotKey);
-    $("#UpdIconName").val(row.IconName);
-    $("#RemarkUpdate").val(row.Remark);
+    $("#UpdCustomCode").val(row.customCode);
+    $("#UpdIsAutoExpand").val(row.isAutoExpand);
+    $("#UpdIsLeaf").val(row.isLeaf);
+    $("#UpdStatus").val(row.status);
+    $("#UpdHotKey").val(row.hotKey);
+    $("#UpdIconName").val(row.iconName);
+    $("#RemarkUpdate").val(row.remark);
     //$("#UpdParentId").val(row.ParentId);
-    $("#AddTree").combotree('setValue', row.ParentId);
-    $("#AddTree").combotree('setText', row.ParentName);
+    $("#AddTree").combotree('setValue', row.parentId);
+    $("#AddTree").combotree('setText', row.parentName);
         //    $('#AddTree').combotree('select',t[0].id);
-    $('#UpdParentName').val(row.ParentName);   
+    $('#UpdParentName').val(row.parentName);   
 }
 
 function BindTree() {
