@@ -254,3 +254,4 @@ paket-files/
 src/ABP.TPLMS.Web.Mvc/secrets.json
 src/ABP.TPLMS.Web.Host/secrets.json
 src/ABP.TPLMS.Migrator/secrets.json
+/src/ABP.TPLMS.Web.Host/App_Data/Logs/Logs.txt
