@@ -25,6 +25,6 @@ namespace ABP.TPLMS.Modules
         Task<ListResultDto<ModuleDto>> GetAllAsync();
         Task  DeleteAsync(int Id);
         void Delete(int Id);
-        List<Module> GetAll();
+        List<Module> GetAllList();
     }
 }

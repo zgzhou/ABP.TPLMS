@@ -27,6 +27,7 @@ namespace ABP.TPLMS.Modules
         
            // m_map =map;
         }
+      
         public Task CreateAsync(CreateUpdateModuleDto input)
         {
            var module= ObjectMapper.Map<Module>(input);
@@ -49,7 +50,7 @@ namespace ABP.TPLMS.Modules
             
         }
         [UnitOfWork(isTransactional:false)]
-        public List<Module> GetAll()
+        public List<Module> GetAllList()
         {
             var modules = _moduleRepository.GetAllListAsync();
             //   AutoMapper.Mapper.Initialize(map => map.CreateMap<Module, ModuleDto>());

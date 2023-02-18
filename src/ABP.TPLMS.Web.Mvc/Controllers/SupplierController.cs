@@ -45,16 +45,16 @@ namespace ABP.TPLMS.Web.Controllers
 
         private readonly ISupplierAppService _supplierAppService;
         AutoMapper.Mapper m_map;
-        public SupplierController(ISupplierAppService supplierAppService,AutoMapper.Mapper map)
+        public SupplierController(ISupplierAppService supplierAppService)
         {
             _supplierAppService = supplierAppService;
-            m_map = map;
+            
         }
         public async Task<ActionResult> EditSupplierModal(int supplierId)
         {
             
             var module = await _supplierAppService.GetAsync(new EntityDto<int>(supplierId));
-            CreateUpdateSupplierDto cuSupplier = m_map.Map<CreateUpdateSupplierDto>(module);
+            CreateUpdateSupplierDto cuSupplier = ObjectMapper.Map<CreateUpdateSupplierDto>(module);
             var model = new EditSupplierModalViewModel
             {
                 Supplier = cuSupplier

@@ -158,7 +158,8 @@ namespace ABP.TPLMS.Web.Host.Startup
                     In = ParameterLocation.Header,
                     Type = SecuritySchemeType.ApiKey
                 });
-
+                options.IgnoreObsoleteActions();
+                options.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
                 //add summaries to swagger
                 bool canShowSummaries = _appConfiguration.GetValue<bool>("Swagger:ShowSummaries");
                 if (canShowSummaries)

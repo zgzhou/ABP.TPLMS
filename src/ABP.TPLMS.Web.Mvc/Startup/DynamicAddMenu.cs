@@ -16,7 +16,7 @@ namespace ABP.TPLMS.Web.Startup
         public  MenuItemDefinition AddMenus()
         {
             #region 动态菜单
-           var modules= _moduleAppService.GetAll();
+           var modules= _moduleAppService.GetAllList();
             var project = new MenuItemDefinition(
                     "Business",
                     L("Business"),                    

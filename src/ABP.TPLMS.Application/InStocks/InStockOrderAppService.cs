@@ -29,11 +29,7 @@ namespace ABP.TPLMS.InStocks
             isodApp = isodAppSer;
             isodLocApp = isodLocAppSer;
         }
-        public  Task<PagedResultDto<InStockOrderDto>> GetAll(PagedInStockResultRequestDto input)
-        {
-
-            return GetAllAsync(input);
-        }
+    
         public override Task<PagedResultDto<InStockOrderDto>> GetAllAsync(PagedInStockResultRequestDto input)
         {
                  
@@ -46,7 +42,7 @@ namespace ABP.TPLMS.InStocks
 
             PagedInStockOrderResultDto<InStockOrderDto> inSOs = new PagedInStockOrderResultDto<InStockOrderDto>();
           
-            var allOrgs=GetAll(input);
+            var allOrgs=GetAllAsync(input);
             inSOs.Rows = allOrgs.Result.Items;
             inSOs.Total = allOrgs.Result.TotalCount;
             return inSOs;

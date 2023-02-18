@@ -18,10 +18,10 @@ namespace ABP.TPLMS.Suppliers
     {
              
     }
-        public  Task<SupplierDto> Create(CreateUpdateSupplierDto input)
-        {
-            return CreateAsync(input);
-        }
+        //public Task<SupplierDto> Create(CreateUpdateSupplierDto input)
+        //{
+        //    return CreateAsync(input);
+        //}
         public override Task<SupplierDto> CreateAsync(CreateUpdateSupplierDto input)
         {
             var sin = input;
